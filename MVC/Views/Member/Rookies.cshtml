@@ -1,0 +1,86 @@
+ @model List<Member>
+ @{
+    ViewData["Title"] = "Rookies";
+    var index = 0;
+}
+
+<h2>Rookies</h2>
+<div class="dropdown show">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-sort-amount-down mr-2"></i>Sort Of
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" asp-controller="Member" asp-action="Rookies">All</a>
+    <a class="dropdown-item" asp-controller="Member" asp-action="Rookies" asp-route-sortBy="Male">Male</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+  <a asp-action="Create"> <button type="button" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Create</button></a>
+  
+</div>
+  
+
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+
+                <th scope="col">FullName</th>
+                @* <th scope="col">FirstName</th>
+                <th scope="col">LastName</th> *@
+                <th scope="col">Gender</th>
+                <th scope="col">DateOfBirth</th>
+                <th scope="col" >Email</th>
+                <th scope="col" class="text-center" style="width: 220px;">Action</th>
+                
+                </tr>
+            </thead>
+            <tbody>
+                
+                @foreach(var member in Model){
+                    <tr>
+                    <th scope="row">@(index++)</th>
+                    <td>@member.Id.ToString().Substring(0,6)</td>
+                    <td><a asp-action="Detail" asp-route-id="@member.Id">@member.FullName()</a></td>
+                    @* <td>@member.FirstName</td>
+                    <td>@member.LastName</td> *@
+                    <td>@member.Gender</td>
+                    <td>@member.DateOfBirth.ToString("dd/MM/yyyy")</td>
+                    <td>@member.Email</td>
+
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@member.Id"><button type="button" class="btn btn-secondary"><i class="fas fa-edit mr-2"></i>Edit</button></a>
+      
+                            <button  onclick="OnClickDelete();" type="button" class="btn btn-danger"><i class="fas fa-trash-alt mr-2"></i>Delete </button>
+
+                        <div id="DeleteModal" style="display: block;" hidden class="modal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Delete</h5>
+                                            <button id="Close" onclick="OnClickClose()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure want to delete this?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a asp-route-id="@member.Id" asp-action="Delete"><button type="button" class="btn btn-danger">Delete</button></a>
+                                        <button id="CloseButton" onclick="OnClickClose()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    
+     
+    
+
+

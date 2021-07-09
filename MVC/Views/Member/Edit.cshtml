@@ -1,0 +1,47 @@
+ @model Member
+ @{
+    ViewData["Title"] = "Edit";
+    Guid id = @Model.Id;
+}
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<h3>Edit</h3>
+
+<form method="POST">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    
+    <input type="hidden" asp-for="Id" value=@id/>
+  <div class="form-group">
+    <label asp-for="FirstName">First Name</label>
+    <input asp-for="FirstName" type="text" class="form-control" id="FristName" placeholder="Enter Frist Name">
+    <span asp-validation-for="FirstName" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="LastName">Last Name</label>
+    <input asp-for="LastName" type="text" class="form-control" id="LastName" placeholder="Enter Last Name">
+    <span asp-validation-for="LastName" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="Gender">Gender</label>
+    <input asp-for="Gender" type="text" class="form-control" id="Gender" placeholder="Enter Gender">
+    <span asp-validation-for="Gender" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="DateOfBirth">Date Of Birth</label>
+    <input asp-for="DateOfBirth" type="date" class="form-control" id="dofB" placeholder="Enter Date Of Birth">
+    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="Email">Email address</label>
+    <input asp-for="Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <span asp-validation-for="Email" class="text-danger"></span>
+  </div>
+  @* <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div> *@
+
+<input type="submit" class="btn btn-primary" value="Save"></input>
+  
+</form>

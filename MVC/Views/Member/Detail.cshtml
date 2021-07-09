@@ -1,0 +1,73 @@
+ @model Member
+ @{
+    ViewData["Title"] = "Detail";
+    
+}
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<h3>Detail</h3>
+
+                        <div id="DeleteModal" style="display: block;" hidden class="modal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Delete</h5>
+                                            <button id="Close" onclick="OnClickClose()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure want to delete this?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a asp-route-id="@Model.Id" asp-action="Delete"><button type="button" class="btn btn-danger">Delete</button></a>
+                                        <button id="CloseButton" onclick="OnClickClose()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<form method="POST">
+    <div class="form-horizontal row">
+        <div class="form-group col-6">
+            <label asp-for="FirstName">First Name</label>
+            <input asp-for="FirstName" type="text" class="form-control" id="FristName" placeholder="Enter Frist Name" readonly>
+        </div>
+        <div class="form-group col-6">
+            <label asp-for="LastName">Last Name</label>
+            <input asp-for="LastName" type="text" class="form-control" id="LastName" placeholder="Enter Last Name" readonly>
+        </div>
+        <div class="form-group col-6">
+            <label asp-for="Gender">Gender</label>
+            <input asp-for="Gender" type="text" class="form-control" id="Gender" placeholder="Enter Gender" readonly>
+        </div>
+        <div class="form-group col-6">
+            <label asp-for="DateOfBirth">Date Of Birth</label>
+            <input asp-for="DateOfBirth" type="date" class="form-control" id="dofB" placeholder="Enter Date Of Birth" readonly>
+        </div>
+        <div class="form-group col-6">
+            <label asp-for="Email">Email address</label>
+            <input asp-for="Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" readonly>
+        </div>
+            <div class="form-group col-6">
+                <label asp-for="Age">Age</label>
+                <input asp-for="Age" type="text" class="form-control" id="Age" placeholder="Enter Age" readonly>
+            </div>
+
+            <div class="form-group col-6">
+                <label asp-for="BirthPlace">BirthPlace</label>
+                <input asp-for="BirthPlace" type="text" class="form-control" id="BirthPlace" placeholder="Enter BirthPlace" readonly>
+             </div>
+        <div class="form-group col-6">
+            <label asp-for="PhoneNumber">PhoneNumber</label>
+            <input asp-for="PhoneNumber" type="text" class="form-control" id="PhoneNumber" placeholder="Enter PhoneNumber" readonly>
+        </div>
+            <div class="form-group col-6">
+                <label asp-for="IsGraduated">IsGraduated</label>
+                <input asp-for="IsGraduated" type="text" class="form-control" id="Gender" placeholder="Enter IsGraduated" readonly>
+            </div>
+
+</div>
+  <button type="button" class="btn btn-danger" onclick="OnClickDelete()">Delete</button>
+</form>

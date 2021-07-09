@@ -1,0 +1,17 @@
+@model Member
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Confirm";
+    var name = HttpContextAccessor.HttpContext.Session.GetString("Deleted");
+    if(name == null){
+        name = "User";
+    }
+}
+
+<div class="text-center">
+    <h2 class="display-4 text-success">Person  <p id="textAnimated" class="animate-text">@name </p> was removed from the
+    list successfully!”</h2>
+    
+    <h1 id="note" class="note">We Hope You Come Back Soon</h1>
+</div>
